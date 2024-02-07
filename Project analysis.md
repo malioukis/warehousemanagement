@@ -25,11 +25,13 @@ MySQL Driver
 Spring Boot DevTools
 Lombok
 
+* MySql notes*
+- allowPublicKeyRetrieval=true
+- useSSL=false
 
 
-
-
-
+*Spring notes*
+Fundamentally the Java Persistence API was renamed to Jakarta
 
 
 
@@ -50,8 +52,59 @@ Release plan v1
 [] - define api endpoints
 [] - test CRUD with postman
 
-Entities:
 
+
+
+
+---
+
+# Entities:
+
+- #### User
+  - id
+  - firstName
+  - lastName
+  - username
+  - password
+  - role
+  - active
+  - deleted
+  - dateAdded
+  - dateUpdated
+
+- #### Product
+  - id
+  - name
+  - serialNo
+  - description
+  - active
+  - deleted
+  - companyId (FK)
+  - supplierId (FK)
+  - dateAdded
+  - dateUpdated
+
+- #### company
+  - id 
+  - companyName
+  - productId
+
+- #### Supplier
+  - id 
+  - supplierName
+
+- #### OrderCart
+  - id
+  - productId (FK)
+  - quantity
+
+- #### Order
+  - id
+  - orderNo
+  - product
+  - quantity
+
+  
 Users
 
 - User
