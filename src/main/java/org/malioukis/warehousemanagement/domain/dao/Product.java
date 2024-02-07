@@ -42,8 +42,8 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "product")
     private Supplier supplier;
 
-    @OneToMany(mappedBy = "product")
-    private List<PurchaseOrder> orders;
+/*    @OneToMany(mappedBy = "product")
+    private List<PurchaseOrder> orders;*/
 
     @Column
     private LocalDateTime dateAdded;
