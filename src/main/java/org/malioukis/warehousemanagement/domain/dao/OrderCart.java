@@ -1,10 +1,11 @@
 package org.malioukis.warehousemanagement.domain.dao;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,8 +13,8 @@ import java.util.List;
 public class OrderCart extends BaseEntity {
 
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Product> products;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Product product;
 
     @Column
     private Integer quantity;
