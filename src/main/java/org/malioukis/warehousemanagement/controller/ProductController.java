@@ -3,10 +3,9 @@ package org.malioukis.warehousemanagement.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.malioukis.warehousemanagement.domain.dao.Product;
+import org.malioukis.warehousemanagement.domain.dto.ProductDTO;
 import org.malioukis.warehousemanagement.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +21,12 @@ public class ProductController {
     @GetMapping("/")
     public List<Product> getProducts() {
         return productService.getProducts();
+    }
+
+    @PostMapping("/")
+    public ProductDTO addProduct(@RequestBody Product product) {
+        final var productDTO = productService.addProduct(product);
+        return productService.findById(productDTO.getId());
     }
 
 }
