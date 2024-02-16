@@ -19,7 +19,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/")
-    public List<Product> getProducts() {
+    public List<ProductDTO> getProducts() {
         return productService.getProducts();
     }
 

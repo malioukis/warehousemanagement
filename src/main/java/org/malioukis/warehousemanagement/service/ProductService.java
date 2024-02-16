@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @AllArgsConstructor
@@ -28,8 +29,8 @@ public class ProductService {
                 .orElseThrow(() -> new EntityNotFoundException());
     }
 
-    public List<Product> getProducts() {
-        return productRepo.findAll();
+    public List<ProductDTO> getProducts() {
+        return productRepo.findAll().stream().map(genericMapper::toDTO).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = false)
