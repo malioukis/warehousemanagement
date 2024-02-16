@@ -1,13 +1,21 @@
 package org.malioukis.warehousemanagement.domain.dao;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+
+/*
+ * Using Lombok @Data and @EqualsAndHashCode for JPA entities is not recommended.
+ * It can cause severe performance and memory consumption issues.
+ * We should write those manually
+ */
+@Getter
+@Setter
 @Entity
 public class Product extends BaseEntity {
 
@@ -38,7 +46,7 @@ public class Product extends BaseEntity {
     private Company company;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product")
+    @JoinColumn(name = "supplierId")
     private Supplier supplier;
 
 /*    @OneToMany(mappedBy = "product")
@@ -49,4 +57,24 @@ public class Product extends BaseEntity {
 
     @Column
     private LocalDateTime dateUpdated;
+
+    public Product() {
+
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        Product product = (Product) o;
+        return getId() != null && Objects.equals(getId(), product.getId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
 }
