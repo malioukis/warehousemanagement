@@ -62,6 +62,13 @@
             <version>1.6.13</version>
         </dependency>
 
+        <!-- Fake Data-->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
         <!--Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

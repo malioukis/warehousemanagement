@@ -62,6 +62,23 @@ public class Product extends BaseEntity {
 
     }
 
+    public Product(String name, String description, Long serialNo, Integer warehouseQuantity, Double price,
+                   Boolean active,
+                   Boolean deleted, Company company, Supplier supplier, LocalDateTime dateAdded,
+                   LocalDateTime dateUpdated) {
+        this.name = name;
+        this.description = description;
+        this.serialNo = serialNo;
+        this.warehouseQuantity = warehouseQuantity;
+        this.price = price;
+        this.active = active;
+        this.deleted = deleted;
+        this.company = company;
+        this.supplier = supplier;
+        this.dateAdded = dateAdded;
+        this.dateUpdated = dateUpdated;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
